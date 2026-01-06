@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Public Dashboard</title>
+    <link rel="stylesheet" href="../css/main.css" />
+
+    <style>
+        .dashboard {
+            max-width: 900px;
+            margin: 30px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            font-size: 36px;
+            margin: 10px 0;
+        }
+
+        .total {
+            color: #2563eb;
+        }
+
+        .resolved {
+            color: #16a34a;
+        }
+
+        .pending {
+            color: #d97706;
+        }
+
+        .high {
+            color: #dc2626;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <h1>Public Transparency Dashboard</h1>
+    </header>
+
+    <section class="hero">
+        <div class="dashboard">
+
+            <div class="card total">
+                <p>Total Complaints</p>
+                <h2 id="totalCount">0</h2>
+            </div>
+
+            <div class="card resolved">
+                <p>Resolved Complaints</p>
+                <h2 id="resolvedCount">0</h2>
+            </div>
+
+            <div class="card pending">
+                <p>Pending Complaints</p>
+                <h2 id="pendingCount">0</h2>
+            </div>
+
+            <div class="card high">
+                <p>High Priority Issues</p>
+                <h2 id="highCount">0</h2>
+            </div>
+
+        </div>
+    </section>
+
+    <script type="module" src="../js/dashboard.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Civic Lens | Admin Login</title>
+
+  <!-- OPTIONAL: reuse main styles if needed later -->
+  <!-- <link rel="stylesheet" href="../css/main.css"> -->
+
+  <style>
+    /* ================= PAGE BASE ================= */
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ================= CONTAINER ================= */
+    .login-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 420px;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ================= HEADINGS ================= */
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #1f2937;
+    }
+
+    .login-box p {
+      text-align: center;
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 20px;
+    }
+
+    /* ================= INPUTS ================= */
+    .login-box label {
+      font-weight: bold;
+      font-size: 14px;
+      display: block;
+      margin-top: 15px;
+      color: #374151;
+    }
+
+    .login-box input {
+      width: 100%;
+      margin-top: 6px;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      font-size: 15px;
+    }
+
+    .login-box input:focus {
+      outline: none;
+      border-color: #2563eb;
+    }
+
+    /* ================= BUTTON ================= */
+    .login-box button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .login-box button:hover {
+      background: #1d4ed8;
+    }
+
+    /* ================= INFO / NOTES ================= */
+    .admin-note {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #6b7280;
+      background: #f9fafb;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .admin-note strong {
+      color: #111827;
+    }
+
+    /* ================= FOOTER LINK ================= */
+    .back-home {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .back-home a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= LOGIN WRAPPER ================= -->
+  <div class="login-wrapper">
+
+    <div class="login-box">
+
+      <!-- TITLE -->
+      <h2>CIVIC LENS</h2>
+      <p>Administrator Access Portal</p>
+
+      <!-- EMAIL -->
+      <label for="email">Admin Email</label>
+      <input type="email" id="email" placeholder="Enter official admin email" autocomplete="username">
+
+      <!-- PASSWORD -->
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter password" autocomplete="current-password">
+
+      <!-- LOGIN BUTTON -->
+      <button onclick="login()">Login</button>
+
+      <!-- INFO NOTE -->
+      <div class="admin-note">
+        <strong>Note:</strong><br>
+        This login is restricted to authorized civic administrators only.
+        All login activities may be monitored for security and audit purposes.
+      </div>
+
+      <!-- BACK LINK -->
+      <div class="back-home">
+        <a href="index.html">← Back to Civic Lens Home</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= ADMIN AUTH LOGIC ================= -->
+  <script type="module" src="../js/admin-auth.js"></script>
+
+</body>
+
+</html>

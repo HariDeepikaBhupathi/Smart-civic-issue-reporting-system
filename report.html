@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title data-i18n="title">Report Civic Issue</title>
+
+  <link rel="stylesheet" href="../css/main.css" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+    }
+
+    form {
+      max-width: 700px;
+      margin: 30px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    textarea, input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+    }
+
+    .lang-switch {
+      text-align: right;
+      margin-bottom: 10px;
+    }
+
+    .lang-switch button {
+      margin-left: 5px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background: #f1f5f9;
+    }
+
+    .category-icons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .category-icons button {
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: #f1f5f9;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .category-icons button:hover {
+      background: #2563eb;
+      color: white;
+    }
+
+    #selectedCategory {
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
+    }
+
+    #map {
+      height: 300px;
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 2px solid #ccc;
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      padding: 12px;
+      background: #2563eb;
+      color: white;
+      border: none;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .voice-btn {
+      margin-top: 10px;
+      padding: 12px;
+      background: #059669;
+      color: white;
+      border: none;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    #voiceStatus {
+      margin-top: 8px;
+      font-weight: bold;
+      color: #065f46;
+    }
+
+    /* ✅ SUCCESS MESSAGE */
+    #successMessage {
+      display: none;
+      margin-top: 15px;
+      padding: 12px;
+      background: #dcfce7;
+      color: #065f46;
+      font-weight: bold;
+      border-radius: 6px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <h1 data-i18n="title">Report Civic Issue</h1>
+</header>
+
+<section class="hero">
+  <form id="reportForm">
+
+    <!-- 🌐 LANGUAGE SWITCH -->
+    <div class="lang-switch">
+      <button type="button" onclick="setLanguage('en')">English</button>
+      <button type="button" onclick="setLanguage('te')">తెలుగు</button>
+      <button type="button" onclick="setLanguage('hi')">हिंदी</button>
+    </div>
+
+    <!-- ISSUE TYPE -->
+    <label data-i18n="selectIssue">Select Issue Type</label>
+
+    <!-- ✅ STATIC CATEGORY BUTTONS -->
+    <div class="category-icons">
+      <button type="button" onclick="selectCategory('Road & Transport')">🛣️ Road & Transport</button>
+      <button type="button" onclick="selectCategory('Water Supply')">🚰 Water Supply</button>
+      <button type="button" onclick="selectCategory('Electricity')">💡 Electricity</button>
+      <button type="button" onclick="selectCategory('Garbage & Sanitation')">🗑️ Garbage & Sanitation</button>
+      <button type="button" onclick="selectCategory('Drainage & Sewage')">🚽 Drainage & Sewage</button>
+      <button type="button" onclick="selectCategory('Street Safety')">🚦 Street Safety</button>
+      <button type="button" onclick="selectCategory('Public Facilities')">🏞️ Public Facilities</button>
+      <button type="button" onclick="selectCategory('Pollution & Noise')">🌫️ Pollution & Noise</button>
+      <button type="button" onclick="selectCategory('Animal Issues')">🐄 Animal Issues</button>
+      <button type="button" onclick="selectCategory('Emergency / Disaster')">🚨 Emergency / Disaster</button>
+    </div>
+
+    <input type="hidden" id="category" />
+    <p id="selectedCategory"></p>
+
+    <!-- SUB ISSUE -->
+    <label id="subIssueLabel" data-i18n="subIssue" style="display:none;">
+      Select Related Problem
+    </label>
+    <select id="subIssue" style="display:none;"></select>
+
+    <!-- DESCRIPTION -->
+    <label data-i18n="describe">Describe Issue (Voice / Text)</label>
+    <textarea
+      id="description"
+      rows="4"
+      data-i18n-placeholder="describePlaceholder"
+      placeholder="You can type or use voice">
+    </textarea>
+
+    <!-- VOICE -->
+    <button type="button" id="voiceBtn" class="voice-btn">
+      🎤 Speak Issue
+    </button>
+    <p id="voiceStatus"></p>
+
+    <!-- IMAGE -->
+    <label data-i18n="upload">Upload Image (optional)</label>
+    <input type="file" id="image" accept="image/*" />
+
+    <!-- MAP -->
+    <label data-i18n="map">Click on Map to Select Location</label>
+    <div id="map"></div>
+
+    <!-- ✅ SUCCESS MESSAGE -->
+    <p id="successMessage"></p>
+
+    <!-- SUBMIT -->
+    <button type="submit" class="submit-btn" data-i18n="submit">
+      Submit Report
+    </button>
+
+  </form>
+</section>
+
+<!-- JS -->
+<script type="module" src="../js/report.js"></script>
+
+<!-- GOOGLE MAP -->
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeqE7ED6tR1VbVKET7_UXpAifwTvI0byI&callback=initMap"
+  defer>
+</script>
+
+</body>
+</html>

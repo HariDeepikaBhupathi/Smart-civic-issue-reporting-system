@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Civic Lens | Smart Civic Portal</title>
+
+  <style>
+    /* ================= RESET ================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ================= BODY ================= */
+    body {
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      color: #e5e7eb;
+      overflow-x: hidden;
+      position: relative;
+      background: radial-gradient(circle at top, #020617, #000814);
+    }
+
+    /* ================= WATER DEPTH ================= */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -20%;
+      background: linear-gradient(
+        120deg,
+        #020617,
+        #0f172a,
+        #020617
+      );
+      background-size: 300% 300%;
+      animation: waterFlow 22s ease-in-out infinite;
+      z-index: -5;
+    }
+
+    @keyframes waterFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ================= BUBBLE CONTAINER ================= */
+    .bubbles {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -4;
+    }
+
+    /* ================= LIGHT BIG WATER BUBBLES ================= */
+    .bubble {
+      position: absolute;
+      bottom: -150px;
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      left: var(--x);
+
+      /* LIGHT WATER BUBBLE LOOK */
+      background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255,255,255,0.9),
+        rgba(173,216,230,0.35),
+        rgba(255,255,255,0.1),
+        transparent
+      );
+
+      box-shadow:
+        0 0 30px rgba(173,216,230,0.5),
+        inset -8px -8px 20px rgba(255,255,255,0.5);
+
+      animation: rise var(--speed) linear infinite;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(0.9);
+        opacity: 0;
+      }
+      10% { opacity: 0.8; }
+      100% {
+        transform: translateY(-130vh) scale(1.15);
+        opacity: 0;
+      }
+    }
+
+    /* ================= NAVBAR ================= */
+    .navbar {
+      background: rgba(2,6,23,0.95);
+      color: white;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      position: relative;
+      z-index: 10;
+    }
+
+    .navbar a {
+      color: #e5e7eb;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+    }
+
+    /* ================= HERO ================= */
+    .hero {
+      background: rgba(15,23,42,0.92);
+      max-width: 900px;
+      margin: 90px auto;
+      padding: 55px 45px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.8);
+      backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 5;
+    }
+
+    .hero h2 {
+      color: #f8fafc;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      color: #cbd5f5;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    /* ================= BUTTONS ================= */
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 26px;
+      margin: 10px;
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 18px 40px rgba(59,130,246,0.6);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= LIGHT BIG WATER BUBBLES ================= -->
+  <div class="bubbles">
+    <div class="bubble" style="--size:50px; --x:10%; --speed:24s;"></div>
+    <div class="bubble" style="--size:80px; --x:25%; --speed:32s;"></div>
+    <div class="bubble" style="--size:40px; --x:40%; --speed:20s;"></div>
+    <div class="bubble" style="--size:100px; --x:55%; --speed:36s;"></div>
+    <div class="bubble" style="--size:60px; --x:70%; --speed:26s;"></div>
+    <div class="bubble" style="--size:90px; --x:85%; --speed:34s;"></div>
+  </div>
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar">
+    <h1>CIVIC LENS</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="report.html">Report Issue</a>
+      <a href="track.html">Track Status</a>
+      <a href="admin-login.html">Admin</a>
+    </nav>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <h2>Smart Civic Engagement Platform</h2>
+    <p>
+      Civic Lens empowers citizens to report civic issues using images,
+      voice input, and real-time location while enabling authorities to
+      resolve issues transparently.
+    </p>
+
+    <a href="report.html" class="btn-primary">🚨 Report a Civic Issue</a>
+    <a href="track.html" class="btn-primary">📊 Track Reported Issues</a>
+  </section>
+
+  <!-- ================= INFO ================= -->
+  <section class="hero">
+    <h2>Why Civic Lens?</h2>
+    <p>
+      ✔ Faster civic issue reporting<br>
+      ✔ Location-based problem identification<br>
+      ✔ Priority-driven resolution workflow<br>
+      ✔ Transparent citizen–authority interaction
+    </p>
+  </section>
+
+</body>
+</html>
